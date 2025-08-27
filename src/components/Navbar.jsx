@@ -89,7 +89,7 @@ const Navbar = () => {
                     <span>Profile</span>
                   </Link>
                 ) : (
-                  <Link href="/">
+                  <Link href="/login">
                     <Image src={userImg} alt="user" />
                     <span>Login/Signup</span>
                   </Link>
