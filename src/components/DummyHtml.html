@@ -1,0 +1,132 @@
+<style>
+    .visiting-card-front,
+    .visiting-card-back {
+        width: 350px;
+        height: 200px;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        margin: 24px auto 0;
+        font-family: sans-serif;
+        overflow: hidden;
+        position: relative;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    .visiting-card-front {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        margin-bottom: 0;
+    }
+
+    .visiting-card-front-content {
+        padding: 24px 24px 16px 24px;
+    }
+
+    .vcf-name {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #2d3748;
+    }
+
+    .vcf-title {
+        font-size: 1.1rem;
+        color: #4a5568;
+        margin-top: 4px;
+    }
+
+    .vcf-divider {
+        height: 1px;
+        background: #e2e8f0;
+        margin: 16px 0;
+    }
+
+    .vcf-contact {
+        font-size: 0.98rem;
+        color: #2d3748;
+    }
+
+    .vcf-contact span {
+        font-weight: 500;
+    }
+
+    .vcf-corner {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 80px;
+        height: 80px;
+        background: rgba(66, 153, 225, 0.12);
+        border-top-left-radius: 40px 40px;
+    }
+
+    .visiting-card-back {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+        background: linear-gradient(135deg, #4299e1 0%, #90cdf4 100%);
+        margin: 24px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+    }
+
+    .vcb-content {
+        text-align: center;
+    }
+
+    .vcb-logo {
+        font-size: 2.2rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    .vcb-subtitle {
+        font-size: 1.1rem;
+        margin-top: 8px;
+        letter-spacing: 1px;
+    }
+
+    .vcb-tagline {
+        margin-top: 18px;
+        font-size: 0.98rem;
+        opacity: 0.85;
+    }
+
+    .vcb-corner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.10);
+        border-bottom-right-radius: 30px 30px;
+    }
+</style>
+
+<!-- Visiting Card Front -->
+<div class="visiting-card-front">
+    <div class="visiting-card-front-content">
+        <div class="vcf-name" data-label="name" data-input-type="text" data-validation="required">Sumy Sharma</div>
+        <div class="vcf-title" data-label="title" data-input-type="text" data-validation="required">Graphic Designer
+        </div>
+        <div class="vcf-divider"></div>
+        <div class="vcf-contact">
+            <div><span data-label="phone" data-input-type="text" data-validation="required">Phone:</span> +91 98765
+                43210</div>
+            <div><span data-label="email" data-input-type="text" data-validation="required">Email:</span> sumy@email.com
+            </div>
+            <div><span data-label="website" data-input-type="text" data-validation="required">Web:</span>
+                www.sumyportfolio.com</div>
+        </div>
+    </div>
+    <div class="vcf-corner"></div>
+</div>
+
+<!-- Visiting Card Back -->
+<div class="visiting-card-back">
+    <div class="vcb-content">
+        <div class="vcb-logo">SUMY</div>
+        <div class="vcb-subtitle">CREATIVE DESIGNS</div>
+        <div class="vcb-tagline">Let's make your brand stand out!</div>
+    </div>
+    <div class="vcb-corner"></div>
+</div>
