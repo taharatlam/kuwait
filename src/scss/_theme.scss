@@ -18,6 +18,7 @@ $pale : #F3EBE4;
 $brown : #D5CCC3;
 $gray : #595C5D;
 $light-stroke : #EFE9E4;
+$soft-mocha : #BDAEA0;
 
 .h1{
     font-weight: 400 !important;
@@ -80,4 +81,7 @@ $light-stroke : #EFE9E4;
     line-height: 125%;
     font-weight: 400;
     letter-spacing: -4%;
+}
+.color-soft-mocha{
+    color: $soft-mocha !important;
 }

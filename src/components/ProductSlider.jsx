@@ -33,12 +33,12 @@ const ProductSlider = ({ data }) => {
         <div className="swiper-button-next">
           <Image src={Nextnav} alt="Next" />
         </div>
-        {data?.map((item, index) => (
+        {data.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="product-slider-item">
-              {item?.url && (
+              {item && (
                 <Image
-                  src={item.url}
+                  src={item}
                   alt={`Product ${index + 1}`}
                   width={500}
                   height={500}
@@ -61,9 +61,9 @@ const ProductSlider = ({ data }) => {
         {data?.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="product-slider-item thumb-item">
-              {item?.url && (
+              {item && (
                 <Image
-                  src={item.url}
+                  src={item}
                   alt={`Product ${index + 1}`}
                   width={500}
                   height={500}

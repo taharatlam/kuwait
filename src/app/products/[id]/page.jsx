@@ -22,14 +22,8 @@ const Page = () => {
 
   return (
     <>
-      {isTextProduct ? (
-        <TextSignProduct />
-      ) : (
-        <>
-          <SimpleProduct data={product} productSlug={id} />
-          {/* <MainProductInner data={product} /> */}
-        </>
-      )}
+      <SimpleProduct data={product} productSlug={id} />
+      {/* <MainProductInner data={product} /> */}
     </>
   );
 };
