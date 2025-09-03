@@ -419,6 +419,37 @@
 .form-group{
     position: relative;
     margin-bottom: 15px;
+
+    &.material-input{
+        margin-bottom: 25px;
+
+        &:has(input:focus, textarea:focus, select:focus){
+            label{
+                transform: translateY(-180%);
+            }
+        }
+
+        &:has(input:not(:placeholder-shown), textarea:not(:placeholder-shown), select:not(:placeholder-shown)){
+            label{
+                transform: translateY(-180%);
+            }
+        }
+
+        label{
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            z-index: 5;
+            background: white;
+            padding: 0 5px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1d1d1d;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+
+    }
     
     .inp-grp{
         position: relative;
@@ -584,7 +615,7 @@
     
 }
 .pr-row{
-    padding: 3em 0px;
+    padding: 1.5em 0px;
     
     .pr-title{
         font-size: 32px;
@@ -1091,8 +1122,9 @@
 }
 .sidebar{
     position: relative;
-    background: #FFF5ED;
+    background: #fff;
     padding: 2em;
+    border: 1px solid rgba($color: #1d1d1d, $alpha: 0.1);
     border-radius: 20px;
 
     .sidebar-links{
@@ -1130,22 +1162,22 @@
                 }
 
                 &:hover, &.active{
-                    background: #264796;
-                    color: white;
+                    background: #f1f1f1;
+                    // color: white;
 
-                    >svg{
-                        path{
-                            stroke: white;
-                        }
-                    }
+                    // >svg{
+                    //     path{
+                    //         stroke: white;
+                    //     }
+                    // }
 
-                    .sidebar-link-content{
-                        svg{
-                            path{
-                                stroke: white;
-                            }
-                        }
-                    }
+                    // .sidebar-link-content{
+                    //     svg{
+                    //         path{
+                    //             stroke: white;
+                    //         }
+                    //     }
+                    // }
                 }
 
                 .sidebar-link-content{
@@ -1259,8 +1291,8 @@
 .my-acc-main{
     position: relative;
     background: #fff;
-    box-shadow: 0px 0px 4px 0px rgba($color: #000000, $alpha: 0.25);
-    padding: 2em;
+    // box-shadow: 0px 0px 4px 0px rgba($color: #000000, $alpha: 0.25);
+    // padding: 2em;
     min-height: 100%;
     border-radius: 20px;
 }
@@ -1632,12 +1664,14 @@
             color: #858585;
             font-size: 14px;
             font-weight: 500;
+            text-transform: capitalize;
         }
         span{
             color: #858585;
             font-size: 14px;
             font-weight: 500;
             margin: 0 8px;
+            text-transform: capitalize;
         }
     }
 }
@@ -1771,4 +1805,64 @@
     min-width: 40px;
     min-height: 40px;
     display: flex;
+}
+.category-popup-modal{
+    max-width: 900px !important;
+
+    
+    
+    .modal-body{
+        padding: 1.5em !important;
+    }
+}
+.category-popup-top-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 15px;
+
+    .category-popup-close-btn{
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+    }
+
+}
+.category-popup-alphabet-nav{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span{
+        color: $green !important;
+        font-weight: 700 !important;
+        cursor: pointer !important;
+    }
+
+   
+}
+.category-popup-search-bar{
+    padding: 15px 15px !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-color: #1d1d1d !important;
+}
+.cat-acc{
+
+    .accordion-button{
+        background: transparent !important;
+        outline: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 8px 0px !important;
+        font-size: 14px !important;
+    }
+    .accordion-body{
+        padding: 12px 0px !important;
+    }
 }

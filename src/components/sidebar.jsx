@@ -48,7 +48,8 @@ const sidebar = () => {
 
   return (
     <div className="sidebar">
-      <h3 className="sec-head sm">Welcome, Lorem Ipsum</h3>
+      <h3 className="sec-head sm">Hello User</h3>
+      <p className="body2">+ 123 456 789 111</p>
       <ul className="sidebar-links">
         {links.map((link) => (
           <li key={link.name}>

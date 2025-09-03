@@ -20,6 +20,7 @@ import customerCareIcon from "@/images/customer-care.svg";
 import Image from "next/image";
 import CustomerReviews from "@/components/CustomerReviews";
 import YouMayAlsoLike from "@/components/YouMayAlsoLike";
+import CategoryPopup from "@/components/CategoryPopup";
 
 const MainProductInner = ({ data, productSlug }) => {
   const [selectedSize, setSelectedSize] = useState({
@@ -29,6 +30,9 @@ const MainProductInner = ({ data, productSlug }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedVariation, setSelectedVariation] = useState(null);
   const router = useRouter();
+  const [showCategoryPopup, setShowCategoryPopup] = useState(false);
+  const handleCloseCategoryPopup = () => setShowCategoryPopup(false);
+  const handleShowCategoryPopup = () => setShowCategoryPopup(true);
 
   const renderIcon = (icon) => (
     <svg
@@ -128,6 +132,11 @@ const MainProductInner = ({ data, productSlug }) => {
 
   return (
     <div className="pr-inner-page pt-3">
+      <CategoryPopup
+        show={showCategoryPopup}
+        handleClose={handleCloseCategoryPopup}
+        title="Select Category"
+      />
       <div className="container">
         <Breadcrumb data={breadcrumbData} />
         <div className="row ">
@@ -136,7 +145,7 @@ const MainProductInner = ({ data, productSlug }) => {
           </div>
           <div className="col-lg-7 col-12">
             <div className="pr-inner-right">
-              <StarRatingViewOnly rating={4.5} reviews={832} />
+              <StarRatingViewOnly rating={2} reviews={832} />
               <p className="body-2 mb-0">Bathroom Essentials</p>
               <h3 className="h2 text-uppercase">Bathroom Essentials</h3>
               <div className="separator"></div>
@@ -195,7 +204,10 @@ const MainProductInner = ({ data, productSlug }) => {
                       min={1}
                       max={10}
                     />
-                    <button className="main-btn">
+                    <button
+                      className="main-btn"
+                      onClick={handleShowCategoryPopup}
+                    >
                       <span>Add to cart</span>
                     </button>
                     <button className="cus-like-btn">{renderIcon(1)}</button>

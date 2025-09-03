@@ -7,7 +7,8 @@ import ProductCard from "@/components/ProductCard";
 import api from "@/helpers/api";
 import { useSearchParams } from "next/navigation";
 import { GlobalDataContext } from "@/context/GlobalDataContext";
-
+import ProductsFilterSidebar from "@/components/ProductsFilterSidebar";
+import Breadcrumb from "@/components/Breadcrumb";
 const Spinner = () => (
   <div className="row">
     <div className="col-12 text-center py-5">
@@ -28,6 +29,8 @@ const page = () => {
   const searchParams = useSearchParams();
   const category = searchParams.get("category");
   const { token } = useContext(GlobalDataContext);
+
+  const [sort, setSort] = useState("");
 
   useEffect(() => {
     const getProducts = async () => {
@@ -50,9 +53,14 @@ const page = () => {
     getProducts();
   }, [token]);
 
+  const breadcrumbData = [
+    { name: "Home", url: "/" },
+    { name: "Products", url: "/products" },
+  ];
+
   return (
     <>
-      <header className="inner-banner sec">
+      {/* <header className="inner-banner sec">
         <div className="container">
           <div className="row row-gap-25 align-items-center">
             <div className="col-lg-5 col-12">
@@ -74,50 +82,75 @@ const page = () => {
             </div>
           </div>
         </div>
-      </header>
-      <section className="sec pr-sec">
-        <div className="container">
+      </header> */}
+      <div className="container-fluid mt-4">
+        <Breadcrumb data={breadcrumbData} />
+      </div>
+      <section className=" pr-sec">
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-12">
-              <ProductFilters />
+            <div className="col-lg-3 col-12">
+              <ProductsFilterSidebar />
+            </div>
+            <div className="col-lg-9 col-12">
+              {loading ? (
+                <Spinner />
+              ) : categories.length > 0 ? (
+                categories.map((cat, idx) => (
+                  <div className="pr-row" key={cat.category?.id || idx}>
+                    <div className="d-flex align-items-center justify-content-end">
+                      {/* Sort Dropdown */}
+                      <div style={{ minWidth: 200 }}>
+                        <select
+                          className="form-select"
+                          style={{ maxWidth: 220, marginBottom: 16 }}
+                          value={sort}
+                          onChange={(e) => setSort(e.target.value)}
+                        >
+                          <option value="">Sort By</option>
+                          <option value="price-asc">Price: Low to High</option>
+                          <option value="price-desc">Price: High to Low</option>
+                          <option value="name-asc">Name: A-Z</option>
+                          <option value="name-desc">Name: Z-A</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="row row-gap-25">
+                      {/* <div className="col-12">
+                        <h3 className="pr-title">{cat.category?.name}</h3>
+                      </div> */}
+                      {(cat.products || []).map((product, pidx) => (
+                        <div
+                          className="col-lg-4 col-12"
+                          key={product.id || pidx}
+                        >
+                          <ProductCard
+                            data={{
+                              id: product.id,
+                              image: product.image,
+                              title: product.name,
+                              price: `Starting at ₹ ${product.price}`,
+                              slug: product.slug,
+                              image_alt: product.image_alt,
+                              category:
+                                category == "Neon Signs" ? "Neon" : "Normal",
+                              isFavorite: product.isFavorite,
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="row">
+                  <div className="col-12 text-center py-5">
+                    <p>No products found.</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-          {loading ? (
-            <Spinner />
-          ) : categories.length > 0 ? (
-            categories.map((cat, idx) => (
-              <div className="pr-row" key={cat.category?.id || idx}>
-                <div className="row row-gap-25">
-                  <div className="col-12">
-                    <h3 className="pr-title">{cat.category?.name}</h3>
-                  </div>
-                  {(cat.products || []).map((product, pidx) => (
-                    <div className="col-lg-4 col-12" key={product.id || pidx}>
-                      <ProductCard
-                        data={{
-                          id: product.id,
-                          image: product.image,
-                          title: product.name,
-                          price: `Starting at ₹ ${product.price}`,
-                          slug: product.slug,
-                          image_alt: product.image_alt,
-                          category:
-                            category == "Neon Signs" ? "Neon" : "Normal",
-                          isFavorite: product.isFavorite,
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="row">
-              <div className="col-12 text-center py-5">
-                <p>No products found.</p>
-              </div>
-            </div>
-          )}
         </div>
       </section>
     </>

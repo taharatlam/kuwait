@@ -12,23 +12,55 @@ import api from "@/helpers/api";
 import Cookies from "js-cookie";
 import { GlobalDataContext } from "@/context/GlobalDataContext";
 import SearchBar from "./SearchBar";
+import Select from "react-select";
+
+// SVG for language icon
+// White translate icon SVG
+const LangIcon = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    style={{ display: "block" }}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g>
+      <circle
+        cx="12"
+        cy="12"
+        r="11"
+        stroke="#fff"
+        strokeWidth="2"
+        fill="none"
+      />
+      <path
+        d="M7 12h10M12 7v10"
+        stroke="#fff"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <ellipse cx="12" cy="12" rx="5" ry="10" stroke="#fff" strokeWidth="1.5" />
+    </g>
+  </svg>
+);
 
 const navLinks = [
   {
     href: "/",
-    text: "All Products",
+    text: "Home",
   },
   {
-    href: "/",
-    text: "Kitchen Tools",
+    href: "/products",
+    text: "Products",
   },
   {
-    href: "/",
-    text: "Dining",
+    href: "/products/12",
+    text: "Product Single",
   },
   {
-    href: "/",
-    text: "Home Decor",
+    href: "/profile",
+    text: "Profile",
   },
   {
     href: "/",
@@ -48,9 +80,19 @@ const navLinks = [
   },
 ];
 
+// Language + G selector options
+const langOptions = [
+  { value: "en", label: "English" },
+  { value: "hi", label: "हिन्दी" },
+  { value: "gu", label: "ગુજરાતી" },
+];
+
 const Navbar = () => {
   // const [navLinks, setNavLinks] = useState([]);
   const { user, token } = useContext(GlobalDataContext);
+
+  // Language selector state
+  const [selectedLang, setSelectedLang] = useState(langOptions[0]);
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -95,11 +137,106 @@ const Navbar = () => {
                   </Link>
                 )}
               </li>
-              <li>
+              <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <Link href="/">
                   <Image src={cart} alt="user" />
                   <span>Cart</span>
                 </Link>
+                {/* Lang selector beside cart, with icon and white bg */}
+                <div
+                  style={{
+                    minWidth: 120,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 0,
+                    marginLeft: 8,
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      opacity: 0.7,
+                    }}
+                  >
+                    <LangIcon />
+                  </span>
+                  <Select
+                    options={langOptions}
+                    value={selectedLang}
+                    onChange={setSelectedLang}
+                    isSearchable={false}
+                    styles={{
+                      control: (base, state) => ({
+                        ...base,
+                        minHeight: 32,
+                        height: 32,
+                        fontSize: 14,
+                        borderRadius: 8,
+                        borderColor: "transparent !important",
+                        boxShadow: "none",
+                        backgroundColor: "transparent",
+                        cursor: "pointer",
+                        transition: "border-color 0.2s",
+                        paddingLeft: 0,
+                        color: "#fff",
+                        boxShadow: "none",
+                        paddingRight: 0,
+                      }),
+                      valueContainer: (base) => ({
+                        ...base,
+                        height: 32,
+                        padding: "0 8px",
+                        background: "transparent",
+                        color: "#fff",
+                      }),
+                      indicatorsContainer: (base) => ({
+                        ...base,
+                        height: 32,
+                        background: "transparent",
+                        color: "#fff",
+                      }),
+                      dropdownIndicator: (base) => ({
+                        ...base,
+                        padding: 4,
+                        color: "#fff",
+                      }),
+                      menu: (base) => ({
+                        ...base,
+                        zIndex: 9999,
+                        backgroundColor: "green",
+                        borderRadius: 8,
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                        border: "1px solid #e0e0e0",
+                        marginTop: 2,
+                        color: "#fff",
+                      }),
+                      singleValue: (base) => ({
+                        ...base,
+                        color: "#fff",
+                        fontWeight: 500,
+                      }),
+                      option: (base, state) => ({
+                        ...base,
+                        backgroundColor: state.isSelected
+                          ? "#0A3C33"
+                          : state.isFocused
+                          ? "#0A3C33"
+                          : "#0A3C33",
+                        color: state.isSelected ? "#fff" : "#fff",
+                        fontWeight: state.isSelected ? 600 : 400,
+                        fontSize: 14,
+                        cursor: "pointer",
+                      }),
+                      input: (base) => ({
+                        ...base,
+                        color: "#264796",
+                        background: "transparent",
+                      }),
+                    }}
+                    menuPlacement="auto"
+                  />
+                </div>
               </li>
             </ul>
           </div>
